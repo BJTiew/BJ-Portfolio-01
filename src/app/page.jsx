@@ -22,7 +22,7 @@ const Homepage = () => {
         {/* TITLE */}
         <h1 className="text-4xl font-bold md:text-6xl">Tiew: The Efficiency Architect</h1>
         {/* DESC */}
-        <p className="text-center md:text-xl">Welcome to my digital haven! Here, you'll embark on a journey to discover my passions and the fruits of my labor.</p>
+        <p className="text-center md:text-xl">Welcome to my digital haven! Here, you will embark on a journey to discover my passions and the fruits of my labor.</p>
         {/* BUTTON */}
         <div className="flex justify-center w-full gap-4 md:pt-10">
           <Link href="\portfolio" className="">

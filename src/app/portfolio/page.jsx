@@ -133,7 +133,6 @@ const items = [
   {
     id: 14,
     color: "from-purple-400 to-purple-300",
-    color: "from-purple-400 to-purple-300",
     title: "Failure of Cracking Furnace",
     type: "EPCI",
     desc: `
