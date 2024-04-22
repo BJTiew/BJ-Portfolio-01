@@ -18,7 +18,7 @@ const ContactPage = () => {
     >
       <div className="flex flex-col h-full px-4 lg:flex-row sm:px-8 md:px-12 lg:px-20 xl:px-48">
         {/* TEXT CONTAINER */}
-        <div className="flex items-center justify-center text-6xl h-1/2 lg:h-full lg:w-1/2">
+        <div className="flex items-center justify-center text-5xl h-1/2 lg:h-full lg:w-1/2">
           <div>
             {letters.map((letter, index) => (
               <motion.span
