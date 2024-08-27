@@ -16,7 +16,7 @@ const ContactPage = () => {
       animate={{ y: "0%" }}
       transition={{ duration: 1 }}
     >
-      <div className="flex flex-col h-screen max-w-7/10 lg:flex-row">
+      <div className="flex flex-col w-screen h-full px-4 lg:flex-row sm:px-8 md:px-12 lg:px-20 xl:px-48">
         {/* TEXT CONTAINER */}
         <div className="flex items-center justify-center text-5xl h-1/2 lg:h-full lg:w-1/2">
           <div>
@@ -39,7 +39,7 @@ const ContactPage = () => {
         </div>
 
         {/* QR Codes */}
-        <div className="flex flex-row items-center justify-evenly lg:w-1/2">
+        <div className="flex items-center justify-center gap-4 text-6xl md:w-full md:gap-8 h-1/3 lg:h-full lg:gap-12">
           {/* Whatsapp */}
 
           <a href="https://wa.me/60166684985">
@@ -53,7 +53,7 @@ const ContactPage = () => {
                   alt="Whatsapp QR Code"
                   width="150"
                   height="150"
-                  className="object-contain w-30 h-30 md:w-60 md:h-60"
+                  className="object-contain w-30 h-30 xl:w-60 xl:h-60"
                 />
               </div>
             </div>
@@ -71,7 +71,7 @@ const ContactPage = () => {
                 alt="Wechat QR Code"
                 width="150"
                 height="150"
-                className="object-contain w-30 h-30 md:w-60 md:h-60"
+                className="object-contain w-30 h-30 xl:w-60 xl:h-60"
               />
             </div>
           </div>

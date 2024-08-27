@@ -67,6 +67,15 @@ const Navbar = () => {
     },
   };
 
+  const socialMedias = [
+    { id: 1, href: "https://github.com/bjtiew", src: "/github.png", alt: "" },
+    //{ id: 2, href: "#", src: "/dribbble.png", alt: "" },
+    //{ id: 3, href: "#", src: "/instagram.png", alt: "" },
+    //{ id: 4, href: "https://www.facebook.com/BJTiew/", src: "/facebook.png", alt: "" },
+    //{ id: 5, href: "#", src: "/pinterest.png", alt: "" },
+    { id: 6, href: "https://www.linkedin.com/in/bjtiew/", src: "/linkedin.png", alt: "" },
+  ];
+
   return (
     <div className="flex items-center justify-between h-full px-4 text-xl sm:px-8 md:px-12 lg:px-20 xl:px:48">
       {/* Link */}
@@ -89,24 +98,11 @@ const Navbar = () => {
       </div>
       {/* SOCIAL */}
       <div className="hidden w-1/3 gap-4 md:flex md:justify-end">
-        <Link href="/">
-          <Image src="/github.png" alt="" width={24} height={24} />
-        </Link>
-        <Link href="#">
-          <Image src="/dribbble.png" alt="" width={24} height={24} />
-        </Link>
-        <Link href="#">
-          <Image src="/instagram.png" alt="" width={24} height={24} />
-        </Link>
-        <Link href="#">
-          <Image src="/facebook.png" alt="" width={24} height={24} />
-        </Link>
-        <Link href="#">
-          <Image src="/pinterest.png" alt="" width={24} height={24} />
-        </Link>
-        <Link href="#">
-          <Image src="/linkedin.png" alt="" width={24} height={24} />
-        </Link>
+        {socialMedias.map((social) => (
+          <Link key={social.id} href={social.href}>
+            <Image src={social.src} alt={social.alt} width={24} height={24} />
+          </Link>
+        ))}
       </div>
       {/* RESPONSIVE MENU */}
       <div className="md:hidden">
