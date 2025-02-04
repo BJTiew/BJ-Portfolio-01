@@ -10,16 +10,15 @@ import ParallaxText from "@/components/ParallaxText";
 const Homepage = () => {
   return (
     <motion.div
-      className="min-h-screen bg-ios-bg-light dark:bg-ios-bg-dark"
+      className="bg-ios-bg-light dark:bg-ios-bg-dark flex-grow"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <div className="container px-4 mx-auto mt-8 sm:px-6 lg:px-8">
-        {/* Mobile First Design */}
-        <div className="flex flex-col space-y-8 md:flex-row md:space-y-0 md:space-x-8 lg:space-x-16">
+        <div className="flex flex-col gap-8 md:gap-20 lg:flex-row justify-center items-center h-full">
+          
           {/* Image Container */}
-          <ParallaxContainer className="w-48 h-48 mx-auto md:w-1/3 md:h-auto md:mx-0" speed={0.3}>
+          <ParallaxContainer className="w-48 h-48 overflow-hidden mx-auto md:w-1/3 md:h-auto md:mx-0" speed={0.1}>
             <motion.div
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -35,11 +34,11 @@ const Homepage = () => {
               />
             </motion.div>
           </ParallaxContainer>
-
+          
           {/* Content Container */}
-          <div className="flex flex-col justify-center flex-1 space-y-6 text-center md:text-left">
+          <div className="flex flex-col justify-center space-y-6 text-center md:text-left p-4 md:p-0">
             {/* Name and Title */}
-            <ParallaxText speed={-0.2}>
+            <ParallaxText speed={-0.1}>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -58,7 +57,7 @@ const Homepage = () => {
             </ParallaxText>
 
             {/* Description */}
-            <ParallaxText speed={-0.3}>
+            <ParallaxText speed={-0.2}>
               <motion.div className="max-w-2xl text-base text-ios-text-light dark:text-ios-text-dark sm:text-lg md:text-xl">
                 Welcome to my digital haven! Here, you will embark on a journey to
                 discover my passions and the fruits of my labor.
@@ -66,7 +65,7 @@ const Homepage = () => {
             </ParallaxText>
 
             {/* CTA Buttons */}
-            <ParallaxContainer speed={-0.4}>
+            <ParallaxContainer speed={-0.3}>
               <motion.div 
                 className="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4 md:pt-4"
                 initial={{ y: 20, opacity: 0 }}
@@ -87,7 +86,7 @@ const Homepage = () => {
             </ParallaxContainer>
 
             {/* Social Links */}
-            <ParallaxContainer speed={-0.5}>
+            <ParallaxContainer speed={-0.4}>
               <motion.div 
                 className="flex justify-center space-x-6 md:justify-start"
                 initial={{ y: 20, opacity: 0 }}
@@ -104,7 +103,6 @@ const Homepage = () => {
             </ParallaxContainer>
           </div>
         </div>
-      </div>
     </motion.div>
   );
 };

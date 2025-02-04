@@ -14,7 +14,7 @@ const ClientLayout = ({ children }) => {
     <div className="min-h-screen">
       <ScrollProgress />
       <PullToRefresh onRefresh={handleRefresh}>
-        <main className="pt-16">
+        <main className="min-h-screen flex container pt-16 px-4 mx-auto sm:px-6 lg:px-8 justify-center">
           {children}
         </main>
       </PullToRefresh>

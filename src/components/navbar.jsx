@@ -4,6 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { useTheme } from "@/context/themeContext";
 import MobileMenu from "./MobileMenu";
+import { CiLight } from "react-icons/ci";
+import { CiDark } from "react-icons/ci";
 
 const Navbar = () => {
   const { theme, toggleTheme } = useTheme();
@@ -18,21 +20,29 @@ const Navbar = () => {
             Tiew
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:space-x-8">
-            <Link href="/portfolio" className="text-ios-text-light dark:text-ios-text-dark hover:text-ios-primary-light dark:hover:text-ios-primary-dark">
-              Portfolio
-            </Link>
-            <Link href="/contact" className="text-ios-text-light dark:text-ios-text-dark hover:text-ios-primary-light dark:hover:text-ios-primary-dark">
-              Contact
-            </Link>
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"
-            >
-              {theme === "dark" ? "🌞" : "🌙"}
-            </button>
+          {/* Desktop Navigation - Centered */}
+          <div className="hidden md:flex md:flex-1 md:items-center md:justify-center">
+            <div className="flex items-center space-x-8">
+              <Link href="/about" className="text-ios-text-light dark:text-ios-text-dark hover:text-ios-primary-light dark:hover:text-ios-primary-dark">
+                About
+              </Link>
+              <Link href="/portfolio" className="text-ios-text-light dark:text-ios-text-dark hover:text-ios-primary-light dark:hover:text-ios-primary-dark">
+                Portfolio
+              </Link>
+              <Link href="/contact" className="text-ios-text-light dark:text-ios-text-dark hover:text-ios-primary-light dark:hover:text-ios-primary-dark">
+                Contact
+              </Link>
+            </div>
           </div>
+
+          <div className="flex items-center space-x-4">
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700"
+          >
+            {theme === "dark" ? <CiLight /> : <CiDark />}
+          </button>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
@@ -48,6 +58,8 @@ const Navbar = () => {
                 <span className={`block w-full h-0.5 bg-ios-text-light dark:bg-ios-text-dark transition-transform ${isMenuOpen ? '-rotate-45 -translate-y-2' : ''}`} />
               </div>
             </button>
+          </div>
+
           </div>
         </div>
       </div>

@@ -20,6 +20,13 @@ const MobileMenu = ({ isOpen, onClose, theme, onThemeToggle }) => {
           Home
         </Link>
         <Link
+          href="/about"
+          onClick={onClose}
+          className="block px-3 py-2 rounded-md text-ios-text-light dark:text-ios-text-dark hover:bg-gray-200 dark:hover:bg-gray-700"
+        >
+          About
+        </Link>
+        <Link
           href="/portfolio"
           onClick={onClose}
           className="block px-3 py-2 rounded-md text-ios-text-light dark:text-ios-text-dark hover:bg-gray-200 dark:hover:bg-gray-700"
@@ -33,12 +40,12 @@ const MobileMenu = ({ isOpen, onClose, theme, onThemeToggle }) => {
         >
           Contact
         </Link>
-        <button
+        {/* <button
           onClick={onThemeToggle}
           className="w-full text-left px-3 py-2 rounded-md text-ios-text-light dark:text-ios-text-dark hover:bg-gray-200 dark:hover:bg-gray-700"
         >
           {theme === "dark" ? "Switch to Light Mode 🌞" : "Switch to Dark Mode 🌙"}
-        </button>
+        </button> */}
       </div>
     </motion.div>
   );

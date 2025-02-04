@@ -27,14 +27,14 @@ const ContactPage = () => {
   ];
 
   return (
-    <div className="min-h-screen pt-20 bg-ios-bg-light dark:bg-ios-bg-dark">
+    <div className="bg-ios-bg-light dark:bg-ios-bg-dark pt-20">
       <div className="container px-4 mx-auto sm:px-6 lg:px-8">
         {/* Header Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="max-w-2xl mx-auto mb-12 text-center"
+          className="max-w-2xl mx-auto mb-8 text-center"
         >
           <h1 className="mb-4 text-3xl font-bold text-ios-text-light dark:text-ios-text-dark sm:text-4xl">
             {letters.map((letter, index) => (
