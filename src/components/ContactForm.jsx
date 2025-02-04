@@ -10,24 +10,29 @@ const ContactForm = () => {
     subject: '',
     message: ''
   });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState(null);
+  const [status, setStatus] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Here you would implement your form submission logic
-    // For example, using an API route or email service
-    
+    setStatus('sending');
+
     try {
-      // Simulate API call
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      setSubmitStatus('success');
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        setStatus('success');
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      } else {
+        setStatus('error');
+      }
     } catch (error) {
-      setSubmitStatus('error');
-    } finally {
-      setIsSubmitting(false);
+      setStatus('error');
     }
   };
 
@@ -91,15 +96,15 @@ const ContactForm = () => {
       </div>
       <button
         type="submit"
-        disabled={isSubmitting}
+        disabled={status === 'sending'}
         className={`w-full px-6 py-3 text-white transition-colors rounded-full bg-ios-primary-light dark:bg-ios-primary-dark hover:bg-ios-secondary-light dark:hover:bg-ios-secondary-dark disabled:opacity-50 ${
-          isSubmitting ? 'cursor-not-allowed' : ''
+          status === 'sending' ? 'cursor-not-allowed' : ''
         }`}
       >
-        {isSubmitting ? 'Sending...' : 'Send Message'}
+        {status === 'sending' ? 'Sending...' : 'Send Message'}
       </button>
       
-      {submitStatus === 'success' && (
+      {status === 'success' && (
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -109,7 +114,7 @@ const ContactForm = () => {
         </motion.p>
       )}
       
-      {submitStatus === 'error' && (
+      {status === 'error' && (
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

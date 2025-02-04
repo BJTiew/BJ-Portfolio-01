@@ -52,9 +52,9 @@ export const projects = {
     title: "PC-Exxon Tapis R Jacket",
     category: "O&G",
     tags: ["O&G", "Construction", "Project Management"],
-    description: "Orchestrated Malaysia's first large-scale enhanced oil recovery initiative.",
+    description: "Orchestrated Malaysia&apos;s first large-scale enhanced oil recovery initiative.",
     fullDescription: `
-      Led the fabrication and delivery of the Tapis R Jacket, a critical component of Malaysia's first large-scale enhanced oil recovery project.
+      Led the fabrication and delivery of the Tapis R Jacket, a critical component of Malaysia&apos;s first large-scale enhanced oil recovery project.
       
       Key Achievements:
       • Delivered 5,475MT jacket structure

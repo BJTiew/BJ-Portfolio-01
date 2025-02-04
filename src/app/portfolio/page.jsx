@@ -25,7 +25,7 @@ const PortfolioPage = () => {
       title: "PC-Exxon Tapis R Jacket",
       category: "O&G",
       tags: ["O&G", "Construction", "Project Management"],
-      desc: `Orchestrated Malaysia's first large-scale enhanced oil recovery initiative.`,
+      desc: `Orchestrated Malaysia&apos;s first large-scale enhanced oil recovery initiative.`,
       img: "/portfolio/02.webp",
       date: "2016",
     },
@@ -184,9 +184,8 @@ const PortfolioPage = () => {
         {/* Portfolio Grid */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {filteredItems.map((item, index) => (
-            <Link href={`/portfolio/${item.id}`}>
+            <Link href={`/portfolio/${item.id}`} key={item.id}>
               <motion.div
-                key={item.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
