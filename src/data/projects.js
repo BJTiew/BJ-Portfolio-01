@@ -6,7 +6,7 @@ export const projects = {
     tags: ["O&G", "Construction", "Project Management", "EPCI"],
     description: "Co-led a team of over 18,500 to deliver 37 high-quality LNG modules.",
     fullDescription: `
-      Led the successful execution of the Wheatstone LNG Project, one of the world's largest natural gas projects.
+      Led the successful execution of the Wheatstone LNG Project, one of the world&apos;s largest natural gas projects.
       
       Key Achievements:
       • Managed a workforce of over 18,500 personnel
