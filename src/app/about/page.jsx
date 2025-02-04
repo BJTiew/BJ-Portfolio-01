@@ -1,12 +1,13 @@
 "use client";
 
-import Brain from "@/components/brain";
-import { motion, useInView, useScroll } from "framer-motion";
-import React, { useRef } from "react";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
-const biography = `Tiew, your Management Maestro, transforms ideas into reality. Leveraging meticulous planning, strategic execution, and a collaborative spirit.`;
+const biography = [
+  `Tiew, your Management Maestro, transforms ideas into reality. Leveraging meticulous planning, strategic execution, and a collaborative spirit, Tiew has a proven track record of success across diverse projects and industries.`
+];
 
-const biography_quote = `"Building success brick by efficient brick."`;
+const biography_quote = [`"Building success brick by efficient brick."`];
 
 const skills = [
   { category: "Language", skill: "English" },
@@ -99,182 +100,185 @@ const edus = [
   },
 ];
 
-function renderSkills(category) {
+const SkillCard = ({ category, skills }) => {
+  const ref = useRef();
+  const isInView = useInView(ref, { once: true });
+
   return (
-    <div className="p-4 mb-4 bg-opacity-75 bg-sky-200 rounded-2xl">
-      <h2 className="mb-3 text-xl font-semibold md:text-xl lg:text-2xl">{category}</h2>
-      <div className="flex flex-wrap gap-3">
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 20 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5 }}
+      className="p-6 bg-ios-card-light dark:bg-ios-card-dark rounded-2xl shadow-sm"
+    >
+      <h3 className="mb-4 text-xl font-semibold text-ios-text-light dark:text-ios-text-dark">
+        {category}
+      </h3>
+      <div className="flex flex-wrap gap-2">
         {skills.map((skill) => (
-          <div
+          <span
             key={skill.skill}
-            className={`rounded p-2 text-sm cursor-default md:text-lg lg:text-xl bg-red-500 text-white hover:bg-white hover:text-black ${
-              skill.category === category ? "" : "hidden"
-            }`}
+            className="px-3 py-1 text-sm rounded-full bg-ios-primary-light/10 dark:bg-ios-primary-dark/10 text-ios-primary-light dark:text-ios-primary-dark"
           >
-            <div>{skill.category === category && skill.skill}</div>
-          </div>
+            {skill.skill}
+          </span>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
-}
+};
 
-const AboutPage = () => {
-  const containerRef = useRef();
-
-  const { scrollYProgress } = useScroll({ container: containerRef });
-
-  const skillRef = useRef();
-  // const isSkillRefInView = useInView(skillRef, {once:true})
-  const isSkillRefInView = useInView(skillRef, { margin: "-100px" });
-
-  const experienceRef = useRef();
-  // const isExperienceRefInView = useInView(experienceRef, {once:true})
-  const isExperienceRefInView = useInView(experienceRef, { margin: "-100px" });
-
-  const eduRef = useRef();
-  // const isEduRefInView = useInView(eduRef, {once:true})
-  const isEduRefInView = useInView(eduRef, { margin: "-100px" });
+const TimelineItem = ({ jitem, isLast }) => {
+  const ref = useRef();
+  const isInView = useInView(ref, { once: true });
 
   return (
-    <motion.div>
-      <div className="" ref={containerRef}>
-
-        {/* BIOGRAPHY */}
-        <div className="flex items-center justify-center py-8 md:py-12 lg:py-16 w-screen h-[calc(100vh-6rem)]">
-          <div className="lg:w-4/5">
-            <div className="flex flex-col gap-6 px-10 py-16 m-6 bg-white md:py-24 lg:py-24 bg-opacity-70 rounded-2xl md:m-12 lg:m-0 lg:w-2/3">
-              <h1 className="text-3xl font-bold md:text-5xl lg:text-6xl">BIOGRAPHY</h1>
-              <p className="text-md md:text-xl lg:text-2xl">{biography}</p>
-              <span className="pt-6 italic md:pt-10 lg:pt-14">{biography_quote}</span>
-            </div>
-          </div>
+    <div ref={ref} className="relative">
+      {/* Timeline line */}
+      {!isLast && (
+        <div className="absolute left-4 top-8 w-0.5 h-full bg-ios-gray-light/20 dark:bg-ios-gray-dark/20" />
+      )}
+      
+      {/* Timeline content */}
+      <motion.div
+        initial={{ opacity: 0, x: -20 }}
+        animate={isInView ? { opacity: 1, x: 0 } : {}}
+        transition={{ duration: 0.5 }}
+        className="relative flex gap-6 ml-4 mb-10"
+      >
+        {/* Timeline dot */}
+        <div className="absolute -left-4 w-8 h-8 rounded-full bg-ios-card-light dark:bg-ios-card-dark border-4 border-ios-primary-light dark:border-ios-primary-dark flex items-center justify-center">
+          <div className="w-2 h-2 rounded-full bg-ios-primary-light dark:bg-ios-primary-dark" />
         </div>
 
-        {/* EDUCATION CONTAINER*/}
-        <div
-          className="flex items-center justify-center w-screen h-screen py-8 bg-purple-300 md:py-12 lg:py-16"
-          ref={eduRef}
-        >
-          <div className="lg:w-4/5">
-            <div className="flex flex-col gap-6 p-10 m-6 bg-white bg-opacity-50 rounded-2xl md:m-12 lg:m-0 lg:w-2/3">
-              <motion.h1
-                initial={{ x: "-300px" }}
-                animate={isEduRefInView ? { x: 0 } : {}}
-                transition={{ delay: 0.2 }}
-                className="text-3xl font-bold md:text-5xl lg:text-6xl"
-              >
-                EDUCATION
-              </motion.h1>
+        {/* Content card */}
+        <div className="flex-1 ml-4">
+          <div className="p-6 bg-ios-card-light dark:bg-ios-card-dark rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+            {/* Date badge */}
+            <div className="inline-block px-3 py-1 mb-3 text-sm rounded-full bg-ios-primary-light/10 dark:bg-ios-primary-dark/10 text-ios-primary-light dark:text-ios-primary-dark">
+              {jitem.jdate}
+            </div>
+            
+            {/* Job title */}
+            <h3 className="text-xl font-semibold text-ios-text-light dark:text-ios-text-dark">
+              {jitem.jtitle}
+            </h3>
+            
+            {/* Company name */}
+            <p className="mt-1 text-ios-gray-light dark:text-ios-gray-dark font-medium">
+              {jitem.jcomp}
+            </p>
+            
+            {/* Job description */}
+            <p className="mt-2 text-sm text-ios-text-light dark:text-ios-text-dark opacity-80">
+              {jitem.jdesc}
+            </p>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
 
-              <motion.div
-                initial={{ x: "-300px" }}
-                animate={isEduRefInView ? { x: "0" } : {}}
-                className="container flex flex-wrap gap-4 text-lg md:gap-8 lg:gap-8 md:flex-nowrap"
-              >
-                {edus.map((edu) => (
-                  <div key={edu.id} className="flex flex-col gap-3 p-4 bg-purple-300 md:w-1/2 rounded-2xl">
-                    <div className="flex px-2 text-xs italic font-semibold text-white bg-red-500 max-w-fit md:text-sm lg:text-md">{edu.grad}</div>
-                    <div className="p-3 text-base font-semibold bg-white rounded-xl md:text-lg lg:text-2xl">{edu.course}</div>
-                    <div className="px-3 mb-3 text-sm italic text-gray-800 md:text-base lg:text-md">{edu.uni}</div>
+const AboutPage = () => {
+  const bioRef = useRef();
+  const isBioInView = useInView(bioRef, { once: true });
+
+  return (
+    <div className="min-h-screen pt-20 bg-ios-bg-light dark:bg-ios-bg-dark">
+      <div className="container px-4 mx-auto space-y-16 sm:px-6 lg:px-8">
+        {/* Biography Section */}
+        <motion.section
+          ref={bioRef}
+          initial={{ opacity: 0, y: 20 }}
+          animate={isBioInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+          className="max-w-4xl mx-auto space-y-6"
+        >
+          <h2 className="text-3xl font-bold text-ios-text-light dark:text-ios-text-dark sm:text-4xl">
+            Biography
+          </h2>
+          <p className="text-lg text-ios-text-light dark:text-ios-text-dark">
+            {biography}
+          </p>
+          <p className="text-lg italic text-ios-gray-light dark:text-ios-gray-dark">
+            {biography_quote}
+          </p>
+        </motion.section>
+
+        {/* Skills Section */}
+        <section className="max-w-4xl mx-auto space-y-6">
+          <h2 className="text-3xl font-bold text-ios-text-light dark:text-ios-text-dark sm:text-4xl">
+            Skills
+          </h2>
+          <div className="grid gap-6 md:grid-cols-2">
+            {["Language", "Technical", "Management", "Software"].map((category) => (
+              <SkillCard
+                key={category}
+                category={category}
+                skills={skills.filter((s) => s.category === category)}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* Experience Section */}
+        <section className="max-w-4xl mx-auto space-y-6">
+          <h2 className="text-3xl font-bold text-ios-text-light dark:text-ios-text-dark sm:text-4xl mb-8">
+            Experience
+          </h2>
+          <div className="pl-4">
+            {jitems.map((jitem, index) => (
+              <TimelineItem 
+                key={jitem.jid} 
+                jitem={jitem} 
+                isLast={index === jitems.length - 1}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* Education Section (if you want to add it) */}
+        <section className="max-w-4xl mx-auto space-y-6">
+          <h2 className="text-3xl font-bold text-ios-text-light dark:text-ios-text-dark sm:text-4xl mb-8">
+            Education
+          </h2>
+          <div className="pl-4">
+            {edus.map((edu, index) => (
+              <div key={edu.id} className="relative">
+                {index !== edus.length - 1 && (
+                  <div className="absolute left-4 top-8 w-0.5 h-full bg-ios-gray-light/20 dark:bg-ios-gray-dark/20" />
+                )}
+                <motion.div
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="relative flex gap-6 ml-4 mb-10"
+                >
+                  <div className="absolute -left-4 w-8 h-8 rounded-full bg-ios-card-light dark:bg-ios-card-dark border-4 border-ios-secondary-light dark:border-ios-secondary-dark flex items-center justify-center">
+                    <div className="w-2 h-2 rounded-full bg-ios-secondary-light dark:bg-ios-secondary-dark" />
                   </div>
-                ))}
-              </motion.div>
-            </div>
-          </div>
-        </div>
-
-
-        {/* SKILL CONTAINER */}
-        <div
-          className="flex items-center justify-center w-screen min-h-screen py-8 md:py-12 lg:py-16 bg-sky-200"
-          ref={skillRef}
-        >
-          <div className="lg:w-4/5">
-            {/* SKILL TITLE */}
-            <div className="flex flex-col gap-6 p-10 m-6 bg-white bg-opacity-50 rounded-2xl md:m-12 lg:m-0 lg:w-2/3">
-              <motion.h1
-                initial={{ x: "-300px" }}
-                animate={isSkillRefInView ? { x: 0 } : {}}
-                transition={{ delay: 0.2 }}
-                className="text-3xl font-bold md:text-5xl lg:text-6xl"
-              >
-                SKILLS
-              </motion.h1>
-              {/* SKILL LIST */}
-              <motion.div
-                initial={{ x: "-300px" }}
-                animate={isSkillRefInView ? { x: 0 } : {}}
-                className=""
-              >
-                <div>
-                  {["Language", "Technical", "Management", "Software"].map(
-                    (category) => renderSkills(category)
-                  )}
-                </div>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-        
-        
-          {/* EXPERIENCE CONTAINER */}
-          <div
-            className="flex items-center justify-center w-screen min-h-screen py-8 md:py-12 lg:py-16 bg-emerald-200"
-            ref={experienceRef}
-          >
-          <div className="lg:w-4/5">
-            {/* EXPERIENCE TITLE */}
-            <div className="flex flex-col gap-6 p-10 m-6 bg-white bg-opacity-50 rounded-2xl md:m-12 lg:m-0 lg:w-2/3">
-              <motion.h1
-                initial={{ x: "-300px" }}
-                animate={isExperienceRefInView ? { x: "0" } : {}}
-                transition={{ delay: 0.2 }}
-                className="text-3xl font-bold md:text-5xl lg:text-6xl"
-              >
-                EXPERIENCE
-              </motion.h1>
-              {/* EXPERIENCE LIST */}
-              <motion.div
-                initial={{ x: "-300px" }}
-                animate={isExperienceRefInView ? { x: "0" } : {}}
-                className=""
-              >
-                <div className="">
-                  {jitems.map((jitem, index) => (
-                    <div className={"flex justify-between"} key={jitem.jid}>
-                      <div className="w-1/24"></div>
-                      <div className="w-1/12">
-                        {/* LINE */}
-                        <div className="relative w-1 h-full bg-gray-600 rounded">
-                          {/* LINE CIRCLE */}
-                          <div className="absolute w-5 h-5 bg-white rounded-full ring-4 ring-red-400 -left-2"></div>
-                        </div>
+                  <div className="flex-1 ml-4">
+                    <div className="p-6 bg-ios-card-light dark:bg-ios-card-dark rounded-2xl shadow-sm">
+                      <div className="inline-block px-3 py-1 mb-3 text-sm rounded-full bg-ios-secondary-light/10 dark:bg-ios-secondary-dark/10 text-ios-secondary-light dark:text-ios-secondary-dark">
+                        {edu.grad}
                       </div>
-                      <div className="w-4/5">
-                        <div className="p-3 mb-8 border bg-emerald-300 rounded-xl">
-                          <div className="p-3 text-base font-semibold bg-white rounded-b-lg rounded-s-lg md:text-lg lg:text-xl">
-                            {jitem.jtitle}
-                          </div>
-                          <div className="p-3 text-sm italic md:text-md lg:text-lg ">{jitem.jdesc}</div>
-                          <div className="p-3 text-sm font-semibold text-red-400 lg:absolute lg:text-lg md:text-md lg:right-2 lg:text-white">
-                            {jitem.jdate}
-                          </div>
-                          <div className="p-1 text-sm font-semibold text-white rounded lg:text-lg md:text-md w-fit">
-                            {jitem.jcomp}
-                          </div>
-                        </div>
-                      </div>
+                      <h3 className="text-xl font-semibold text-ios-text-light dark:text-ios-text-dark">
+                        {edu.course}
+                      </h3>
+                      <p className="mt-1 text-ios-gray-light dark:text-ios-gray-dark">
+                        {edu.uni}
+                      </p>
                     </div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
+                  </div>
+                </motion.div>
+              </div>
+            ))}
           </div>
-        </div>
-
+        </section>
       </div>
-    </motion.div>
+    </div>
   );
 };
 
