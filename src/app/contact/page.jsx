@@ -55,7 +55,7 @@ const ContactPage = () => {
             <span className="ml-2">👋</span>
           </h1>
           <p className="text-lg text-ios-gray-light dark:text-ios-gray-dark">
-            Let&aposs connect and discuss how we can work together
+          Let&apos;s connect and discuss how we can work together
           </p>
         </motion.div>
 
@@ -73,10 +73,10 @@ const ContactPage = () => {
                 <h2 className={`text-2xl font-semibold ${method.iconColor}`}>
                   {method.title}
                 </h2>
-                <p className="text-ios-gray-light dark:text-ios-gray-dark">
+                {/* <p className="text-ios-gray-light dark:text-ios-gray-dark">
                   {method.description}
-                </p>
-                <div className="p-4 bg-white rounded-xl w-48 h-48 md:w-64 md:h-64">
+                </p> */}
+                <div className="p-0 bg-white rounded-xl overflow-hidden w-48 h-48 md:w-64 md:h-64">
                   <Image
                     src={method.image}
                     alt={`${method.title} QR Code`}
