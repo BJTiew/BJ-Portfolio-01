@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
-import ResponsiveImage from "@/components/ResponsiveImage";
 
 const ContactPage = () => {
   const text = "Say Hello";
@@ -56,7 +55,7 @@ const ContactPage = () => {
             <span className="ml-2">👋</span>
           </h1>
           <p className="text-lg text-ios-gray-light dark:text-ios-gray-dark">
-            Let's connect and discuss how we can work together
+            Let&aposs connect and discuss how we can work together
           </p>
         </motion.div>
 
